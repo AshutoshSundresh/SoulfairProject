@@ -1,92 +1,17 @@
 {
-  "2021-12-01": {
-      "day": "Wednesday",
-      "breakfast": "Peanut Aloo Poha with ketchup or Green chutney",
-      "lunch": "Veg Fried Rice with manchurian gravy"
-  },
-  "2021-12-02": {
-      "day": "Thursday",
-      "breakfast": "Vegetable Vermicilli with sauce",
-      "lunch": "Vada Paav with ketchup or chutney"
-  },
-  "2021-12-03": {
-      "day": "Friday",
-      "breakfast": "Veg Sandwich with ketchup",
-      "lunch": "Hakka Noodles with sauce"
-  },
-  "2021-12-06": {
-      "day": "Monday",
-      "breakfast": "Vegetable Macroni with Ketchup",
-      "lunch": "Veg Fried Rice with manchurian gravy"
-  },
-  "2021-12-07": {
-      "day": "Tuesday",
-      "breakfast": "Masala idli with coconut chutney",
-      "lunch": "Kathi Roll with ketchup"
-  },
-  "2021-12-08": {
-      "day": "Wednesday",
-      "breakfast": "Peanut Aloo Poha with ketchup or Green chutney",
-      "lunch": "Aloo onion Parantha with butter"
-  },
-  "2021-12-09": {
-      "day": "Thursday",
-      "breakfast": "Veg uttapam with tomato chutney",
+  "2022-01-08": {
+      "day": "Saturday",
+      "breakfast": "Lasagna",
       "lunch": "Penne Pasta with Red Sauce"
   },
-  "2021-12-10": {
-      "day": "Friday",
-      "breakfast": "Kathi Roll with ketchup",
-      "lunch": "Veg Hakka noodles with sauce"
-  },  
-  "2021-12-13": {
-      "day": "Monday",
-      "breakfast": "Aloo tikki burger with sauce",
-      "lunch": "vegetable Macroni with Ketchup"   
-  },
-  "2021-12-14": {
-      "day": "Tuesday",
-      "breakfast": "Veg Sandwich with ketchup",
-      "lunch": "Mix veg parantha with pickle"
-  },  
-  "2021-12-15": {
-      "day": "Wednesday",
-      "breakfast": "Peanut Aloo Poha with ketchup",
-      "lunch": "Veg Fried Rice with manchurian gravy"   
-  },
-  "2021-12-16": {
-      "day": "Thursday",
-      "breakfast": "Aloo Onion Paratha",
+  "2022-01-09": {
+      "day": "Sunday",
+      "breakfast": "Quesadillas",
       "lunch": "Penne Pasta with Red Sauce"
-  },  
-  "2021-12-17": {
-      "day": "Friday",
-      "breakfast": "Upma with salsa sauce",
-      "lunch": "Vada Paav"
-  },  
-  "2021-12-20": {
-      "day": "Monday",
-      "breakfast": "Kathi roll with ketchup or Green chutney",
-      "lunch": "Hakka Noodles with sauce"
-  },  
-  "2021-12-21": {
-      "day": "Tuesday",
-      "breakfast": "Veg Uttapam with chutney",
-      "lunch": "vegetable Macroni with Ketchup"
-  },  
-  "2021-12-22": {
-      "day": "Wednesday",
-      "breakfast": "Masala idli with coconut chutney",
-      "lunch": "Kathi Roll with ketchup"
   },
-  "2021-12-23": {
-      "day": "Thursday",
-      "breakfast": "Masala Peanut Vermecilli",
-      "lunch": "Veg Fried Rice with manchurian gravy"
-  },  
-  "2021-12-24": {
-      "day": "Friday",
-      "breakfast": "Plain dosa with potato veg & chutney",
+  "2022-01-10": {
+      "day": "Monday",
+      "breakfast": "Masala dosa",
       "lunch": "Penne Pasta with Red Sauce"
   }
 }
