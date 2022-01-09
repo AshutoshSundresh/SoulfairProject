@@ -49,8 +49,8 @@ const MealIntentHandler = {
 
         // Set the current time
 		const localNowMoment = moment().tz(userTimeZone);
-		// Format to Indian style date
-		const todayDate = localNowMoment.format("DD-MM-YYYY");
+		// Format to Amazon's preferred date style
+		const todayDate = localNowMoment.format("YYYY-MM-DD");
 		// Use Amazon.DATE slot
 		let date = Alexa.getSlotValue(handlerInput.requestEnvelope, "date") || todayDate; // Default to today's date
 		
