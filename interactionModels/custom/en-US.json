@@ -1,62 +1,62 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "food menu",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "MealIntent",
-          "slots": [
-            {
-              "name": "meal",
-              "type": "meal"
-            },
-            {
-              "name": "date",
-              "type": "AMAZON.DATE"
-            },
-            {
-              "name": "getMealRequest",
-              "type": "getMealRequest"
-            }
-          ],
-          "samples": [
-            "{meal}",
-            "{date}",
-            "{meal} {date}",
-            "{date} {meal}",
-            "{date} for {meal}",
-            "{meal} for {date}",
-            "{meal} on {date}",
-            "{getMealRequest} {meal}",
-            "{getMealRequest} {meal} {date}",
-            "{getMealRequest} {meal} on {date}",
-            "{getMealRequest} {meal} for {date}",
-            "{getMealRequest} {date}",
-            "{getMealRequest} {date} {meal}",
-            "{getMealRequest} {date} for {meal}"
-          ]
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.FallbackIntent",
-          "samples": []
-        }
-      ],
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "food menu",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "MealIntent",
+                    "slots": [
+                        {
+                            "name": "meal",
+                            "type": "meal"
+                        },
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE"
+                        },
+                        {
+                            "name": "getMealRequest",
+                            "type": "getMealRequest"
+                        }
+                    ],
+                    "samples": [
+                        "{meal}",
+                        "{date}",
+                        "{meal} {date}",
+                        "{date} {meal}",
+                        "{date} for {meal}",
+                        "{meal} for {date}",
+                        "{meal} on {date}",
+                        "{getMealRequest} {meal}",
+                        "{getMealRequest} {meal} {date}",
+                        "{getMealRequest} {meal} on {date}",
+                        "{getMealRequest} {meal} for {date}",
+                        "{getMealRequest} {date}",
+                        "{getMealRequest} {date} {meal}",
+                        "{getMealRequest} {date} for {meal}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                }
+            ],
             "types": [
                 {
                     "name": "meal",
@@ -282,4 +282,4 @@
             }
         ]
     }
-}           
+}
