@@ -24,7 +24,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome, which meal and day would you like to know?';
+        const speakOutput = 'Welcome to Shiv Nadar Faridabad Food menu, which meal and day would you like to know?';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
