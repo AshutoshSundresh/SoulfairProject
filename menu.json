@@ -13,5 +13,20 @@
       "day": "Monday",
       "breakfast": "Masala dosa",
       "lunch": "Penne Pasta with Red Sauce"
+  },
+  "2022-02-08": {
+      "day": "Saturday",
+      "breakfast": "Lasagna",
+      "lunch": "Penne Pasta with Red Sauce"
+  },
+  "2022-02-09": {
+      "day": "Sunday",
+      "breakfast": "Quesadillas",
+      "lunch": "Penne Pasta with Red Sauce"
+  },
+  "2022-02-10": {
+      "day": "Monday",
+      "breakfast": "Masala dosa",
+      "lunch": "Penne Pasta with Red Sauce"
   }
 }
