@@ -57,169 +57,229 @@
           "samples": []
         }
       ],
-      "types": [
-        {
-          "values": [
-            {
-              "name": {
-                "value": "all",
-                "synonyms": [
-                  "eating",
-                  "meal",
-                  "refreshment",
-                  "meals",
-                  "all eats",
-                  "eats",
-                  "nourishment",
-                  "sustenance",
-                  "eating time",
-                  "snack",
-                  "refreshments",
-                  "food",
-                  "any meals",
-                  "any meal",
-                  "all meals",
-                  "any"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "lunch",
-                "synonyms": [
-                  "noon meal",
-                  "afternoon meal",
-                  "afternoon",
-                  "noon"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "breakfast",
-                "synonyms": [
-                  "the morning",
-                  "morning meal",
-                  "in the morning",
-                  "morning"
-                ]
-              }
-            }
-          ],
-          "name": "meal"
+            "types": [
+                {
+                    "name": "meal",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "all",
+                                "synonyms": [
+                                    "eating",
+                                    "meal",
+                                    "refreshment",
+                                    "meals",
+                                    "all eats",
+                                    "eats",
+                                    "nourishment",
+                                    "sustenance",
+                                    "eating time",
+                                    "grub time",
+                                    "grub",
+                                    "chow time",
+                                    "snack",
+                                    "refreshments",
+                                    "brunch",
+                                    "food",
+                                    "any meals",
+                                    "any meal",
+                                    "all meals",
+                                    "any"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lunch",
+                                "synonyms": [
+                                    "noon meal",
+                                    "afternoon meal",
+                                    "afternoon",
+                                    "noon"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "breakfast",
+                                "synonyms": [
+                                    "the morning",
+                                    "morning meal",
+                                    "in the morning",
+                                    "morning"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getMealRequest",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "what is for",
+                                "synonyms": [
+                                    "what's for"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what are we eating",
+                                "synonyms": [
+                                    "what we are eating"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what are we having",
+                                "synonyms": [
+                                    "what we are having"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what are we eating for",
+                                "synonyms": [
+                                    "what we are eating for"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what are we having for",
+                                "synonyms": [
+                                    "what we are having for"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what are we eating on",
+                                "synonyms": [
+                                    "what we are eating on"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what are we having on",
+                                "synonyms": [
+                                    "what we are having on"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what was for",
+                                "synonyms": [
+                                    "what we ate for",
+                                    "what we had for"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what we had"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what we ate"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what are we going to eat",
+                                "synonyms": [
+                                    "what are we going to eat on",
+                                    "what are we going to eat for"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "what are we going to have",
+                                "synonyms": [
+                                    "what are we going to have on",
+                                    "what are we going to have for"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "for"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "about"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
-        {
-          "values": [
+        "dialog": {
+            "intents": [
+                {
+                    "name": "MealIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "meal",
+                            "type": "meal",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {},
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.1424888573963.1216637824356.139506818213"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "getMealRequest",
+                            "type": "getMealRequest",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
             {
-              "name": {
-                "value": "what is for",
-                "synonyms": [
-                  "what\u0027s for"
+                "id": "Elicit.Slot.1424888573963.1216637824356",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which meal?"
+                    }
                 ]
-              }
             },
             {
-              "name": {
-                "value": "what are we eating",
-                "synonyms": [
-                  "what we are eating"
+                "id": "Slot.Validation.1424888573963.1216637824356.139506818213",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which meal?"
+                    }
                 ]
-              }
-            },
-            {
-              "name": {
-                "value": "what are we having",
-                "synonyms": [
-                  "what we are having"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "what are we eating for",
-                "synonyms": [
-                  "what we are eating for"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "what are we having for",
-                "synonyms": [
-                  "what we are having for"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "what are we eating on",
-                "synonyms": [
-                  "what we are eating on"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "what are we having on",
-                "synonyms": [
-                  "what we are having on"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "what was for",
-                "synonyms": [
-                  "what we ate for",
-                  "what we had for",
-                  "what did we eat for",
-                  "what we had eaten for"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "what we had"
-              }
-            },
-            {
-              "name": {
-                "value": "what we ate"
-              }
-            },
-            {
-              "name": {
-                "value": "what are we going to eat",
-                "synonyms": [
-                  "what are we going to eat on",
-                  "what are we going to eat for"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "what are we going to have",
-                "synonyms": [
-                  "what are we going to have on",
-                  "what are we going to have for"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "for"
-              }
-            },
-            {
-              "name": {
-                "value": "about"
-              }
             }
-          ],
-          "name": "getMealRequest"
-        }
-      ]
+        ]
     }
-  },
-  "version": "4"
-}
+}           
