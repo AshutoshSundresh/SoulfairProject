@@ -53,7 +53,7 @@ const MealIntentHandler = {
 		const todayDate = localNowMoment.format("YYYY-MM-DD");
 		// Use Amazon.DATE slot
 		let date = Alexa.getSlotValue(handlerInput.requestEnvelope, "date") || todayDate; // Default to today's date
-		
+
 		const day = moment(date).tz(userTimeZone, true).calendar(localNowMoment, {
 			sameDay: "[today]",
 			nextDay: "[tomorrow]",
@@ -77,9 +77,6 @@ const MealIntentHandler = {
 		
 		// initialise food variable as an empty string
 		let food = "";
-
-	    const { attributesManager } = handlerInput;
-        const persistentAttributes = await attributesManager.getPersistentAttributes() || {};
         
 		let response;
 		let meals;
