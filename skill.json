@@ -1,49 +1,80 @@
 {
   "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "An Alexa Skill that reads out the SNS Faridabad food menu for both breakfast and lunch",
+          "examplePhrases": [
+            "Alexa, ask food menu what we\u0027re eating today",
+            "Alexa, ask food menu what\u0027s for lunch tomorrow",
+            ""
+          ],
+          "keywords": [
+            "sns",
+            "sns",
+            "faridabad",
+            "shiv",
+            "nadar",
+            "school",
+            "schools",
+            "food",
+            "menu",
+            "lunch",
+            "menu",
+            "meals",
+            "menu",
+            "menu"
+          ],
+          "name": "Shiv Nadar School Faridabad Food Menu",
+          "description": "This skill provides the food menu for SNS Faridabad. It has various features:\n\nThe main things the skill will handle while fetching data are: \n1. Identify the specific day requested by the user as well as key words used such as tomorrow, yesterday and today.\n2. Identify whether only lunch or breakfast information is required. Fallback to providing both lunch and breakfast information if there\u0027s no explicit command for either one of them.\n3. Properly handle a situation where no data is available.\n\nSource code: https://github.com/AshutoshSundresh/SoulfairProject",
+          "smallIconUri": "file://assets/images/en-US_smallIconUri.png",
+          "largeIconUri": "file://assets/images/en-US_largeIconUri.png"
+        }
+      },
+      "automaticDistribution": {
+        "isActive": false
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "1. Test asking for food on a date, relative or absolute.\n2. Test asking for breakfast and lunch individually, and then using \"all\" for both together.\n3. This is the menu json being used: https://raw.githubusercontent.com/AshutoshSundresh/SoulfairProject/main/menu.json\n\nCurrently it hosts dates from 1st December to 24th December. There is no menu available after that from the school due to COVID-19. The January 8-10 and February 8-10 entries are for testing as well.",
+      "category": "SCHOOLS",
+      "distributionMode": "PUBLIC",
+      "distributionCountries": []
+    },
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "arn:aws:lambda:us-east-1:115207693098:function:8f7fbb98-6f47-49bb-993b-860c7e20097b:Release_0"
+          "uri": "arn:aws:lambda:us-east-1:115207693098:function:8f7fbb98-6f47-49bb-993b-860c7e20097b:Release_1"
         },
         "interfaces": [],
         "regions": {
-          "NA": {
-            "endpoint": {
-              "uri": "arn:aws:lambda:us-east-1:115207693098:function:8f7fbb98-6f47-49bb-993b-860c7e20097b:Release_0"
-            }
-          },
           "EU": {
             "endpoint": {
-              "uri": "arn:aws:lambda:eu-west-1:115207693098:function:8f7fbb98-6f47-49bb-993b-860c7e20097b:Release_0"
+              "uri": "arn:aws:lambda:eu-west-1:115207693098:function:8f7fbb98-6f47-49bb-993b-860c7e20097b:Release_1"
+            }
+          },
+          "NA": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-east-1:115207693098:function:8f7fbb98-6f47-49bb-993b-860c7e20097b:Release_1"
             }
           },
           "FE": {
             "endpoint": {
-              "uri": "arn:aws:lambda:us-west-2:115207693098:function:8f7fbb98-6f47-49bb-993b-860c7e20097b:Release_0"
+              "uri": "arn:aws:lambda:us-west-2:115207693098:function:8f7fbb98-6f47-49bb-993b-860c7e20097b:Release_1"
             }
           }
         }
       }
     },
     "manifestVersion": "1.0",
-    "publishingInformation": {
-      "category": "KNOWLEDGE_AND_TRIVIA",
-      "distributionCountries": [],
-      "isAvailableWorldwide": true,
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
       "locales": {
-        "en-US": {
-          "description": "Sample Full Description",
-          "examplePhrases": [
-            "Alexa open hello world",
-            "hello",
-            "help"
-          ],
-          "keywords": [],
-          "name": "food menu",
-          "summary": "Sample Short Description"
-        }
+        "en-US": {}
       },
-      "testingInstructions": "Sample Testing Instructions."
+      "containsAds": false,
+      "isExportCompliant": true,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
     }
   }
 }
