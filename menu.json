@@ -88,32 +88,29 @@
       "day": "Friday",
       "breakfast": "Plain dosa with potato veg & chutney",
       "lunch": "Penne Pasta with Red Sauce"
-  },  
-  "2022-01-08": {
-      "day": "Saturday",
-      "breakfast": "Lasagna",
-      "lunch": "Penne Pasta with Red Sauce"
   },
-  "2022-01-09": {
-      "day": "Sunday",
-      "breakfast": "Quesadillas",
-      "lunch": "Penne Pasta with Red Sauce"
+  "2022-01-11": {
+      "breakfast": "Peanut Aloo Poha with ketchup or Green chutney",
+      "lunch": "Veg Fried Rice with manchurian gravy"
   },
-  "2022-01-10": {
-      "day": "Monday",
-      "breakfast": "Masala dosa",
-      "lunch": "Penne Pasta with Red Sauce"
+  "2022-01-12": {
+      "breakfast": "Vegetable Vermicilli with sauce",
+      "lunch": "Vada Paav with ketchup or chutney"
+  },
+  "2022-01-13": {
+      "breakfast": "Veg Sandwich with ketchup",
+      "lunch": "Hakka Noodles with sauce"
+  },
+  "2022-01-14": {
+      "breakfast": "Masala idli with coconut chutney",
+      "lunch": "Kathi Roll with ketchup"
   },
   "2022-02-08": {
-      "breakfast": "Lasagna",
-      "lunch": "Penne Pasta with Red Sauce"
-  },
+      "breakfast": "Masala Peanut Vermecilli",
+      "lunch": "Veg Fried Rice with manchurian gravy"
+  },  
   "2022-02-09": {
-      "breakfast": "Quesadillas",
-      "lunch": "Penne Pasta with Red Sauce"
-  },
-  "2022-02-10": {
-      "breakfast": "Masala dosa",
+      "breakfast": "Plain dosa with potato veg & chutney",
       "lunch": "Penne Pasta with Red Sauce"
   }
 }
