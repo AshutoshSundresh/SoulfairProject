@@ -64,7 +64,6 @@ const MealIntentHandler = {
 
         // if the date requested is greater than the current date, it is future (used to handle future tense)
         let isFutureDate = date > todayDate;
-        // handle a case where we may want tomorrow's menu today itself without specification (today's breakfast is already over so we want tomorrow's breakfast)
         if (date === todayDate) {
             // obviously breakfast would be over by 10 AM, so use past tense
             if (mealType === "breakfast" && localNowMoment.hour() > 10)
