@@ -10,7 +10,6 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
- 
 const Alexa = require('ask-sdk-core');
 const moment = require("moment-timezone");
 const axios = require("axios");
@@ -35,91 +34,91 @@ const LaunchRequestHandler = {
 
 const MealIntentHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'MealIntent';
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
+            Alexa.getIntentName(handlerInput.requestEnvelope) === 'MealIntent';
     },
     async handle(handlerInput) {
         // hardcode to Kolkata timezone for India only 
-		let userTimeZone = "Asia/Kolkata";
+        let userTimeZone = "Asia/Kolkata";
 
         // getSlotValue takes a slot from the voice interaction model
         // "all" is one of the values of meal, which returns both breakfast and lunch
-		const meal = Alexa.getSlotValue(handlerInput.requestEnvelope, "meal") || "all";
-		const mealType = meal === "all" ? "all" : handlerInput.requestEnvelope.request.intent.slots.meal.resolutions.resolutionsPerAuthority[0].values[0].value.name;
+        const meal = Alexa.getSlotValue(handlerInput.requestEnvelope, "meal") || "all";
+        const mealType = meal === "all" ? "all" : handlerInput.requestEnvelope.request.intent.slots.meal.resolutions.resolutionsPerAuthority[0].values[0].value.name;
 
         // Set the current time
-		const localNowMoment = moment().tz(userTimeZone);
-		// Format to Amazon's preferred date style
-		const todayDate = localNowMoment.format("YYYY-MM-DD");
-		// Use Amazon.DATE slot
-		let date = Alexa.getSlotValue(handlerInput.requestEnvelope, "date") || todayDate; // Default to today's date
+        const localNowMoment = moment().tz(userTimeZone);
+        // Format to Amazon's preferred date style
+        const todayDate = localNowMoment.format("YYYY-MM-DD");
+        // Use Amazon.DATE slot
+        let date = Alexa.getSlotValue(handlerInput.requestEnvelope, "date") || todayDate; // Default to today's date
 
-		const day = moment(date).tz(userTimeZone, true).calendar(localNowMoment, {
-			sameDay: "[today]",
-			nextDay: "[tomorrow]",
-			nextWeek: "[on] dddd, MMMM Do",
-			lastDay: "[yesterday]",
-			lastWeek: "[last] dddd, MMMM Do",
-			sameElse: "[on] dddd, MMMM Do YYYY" // Do = 5th, etc.
-		});
+        const day = moment(date).tz(userTimeZone, true).calendar(localNowMoment, {
+            sameDay: "[today]",
+            nextDay: "[tomorrow]",
+            nextWeek: "[on] dddd, MMMM Do",
+            lastDay: "[yesterday]",
+            lastWeek: "[last] dddd, MMMM Do",
+            sameElse: "[on] dddd, MMMM Do YYYY" // Do = 5th, etc.
+        });
 
         // if the date requested is greater than the current date, it is future (used to handle future tense)
-		let isFutureDate = date > todayDate;
-		// handle a case where we may want tomorrow's menu today itself without specification (today's breakfast is already over so we want tomorrow's breakfast)
-		if (date === todayDate) {
-			// obviously breakfast would be over by 10 AM, so use past tense
-			if (mealType === "breakfast" && localNowMoment.hour() > 10)
-				isFutureDate = false;
-			// similarly lunch would be over by 2 PM, so use past tense
-			else if (mealType === "lunch" && localNowMoment.hour() > 14)
-				isFutureDate = false;
-		}
-		
-		// initialise food variable as an empty string
-		let food = "";
-        
-		let response;
-		let meals;
+        let isFutureDate = date > todayDate;
+        // handle a case where we may want tomorrow's menu today itself without specification (today's breakfast is already over so we want tomorrow's breakfast)
+        if (date === todayDate) {
+            // obviously breakfast would be over by 10 AM, so use past tense
+            if (mealType === "breakfast" && localNowMoment.hour() > 10)
+                isFutureDate = false;
+            // similarly lunch would be over by 2 PM, so use past tense
+            else if (mealType === "lunch" && localNowMoment.hour() > 14)
+                isFutureDate = false;
+        }
 
-		try {
-		    // get the menu json using axios
-			response = await axios.get(menuApiUrl);
-			// fetch only the meal which the user wants. this is what [date] does, already defined by Alexa.DATE
-			meals = response.data[date] || { };
-		} catch (error) {
-		    // catch a possible error for axios
-			return handlerInput.responseBuilder.speak(`There was a problem getting the menu for ${date}.`)
-			.withShouldEndSession(true)
-			.getResponse();
-		}
+        // initialise food variable as an empty string
+        let food = "";
+
+        let response;
+        let meals;
+
+        try {
+            // get the menu json using axios
+            response = await axios.get(menuApiUrl);
+            // fetch only the meal which the user wants. this is what [date] does, already defined by Alexa.DATE
+            meals = response.data[date] || {};
+        } catch (error) {
+            // catch a possible error for axios
+            return handlerInput.responseBuilder.speak(`There was a problem getting the menu for ${date}.`)
+                .withShouldEndSession(true)
+                .getResponse();
+        }
 
         // define speakOutput variable
-		let speakOutput;
-	
-	    // we want all the meal times now
-		if (mealType === "all") {
-		    // these are defined in the json under each date
-			const mealTimeNames = ["breakfast", "lunch"];
+        let speakOutput;
 
-			for (let i = 0; i < mealTimeNames.length; i++) {
-			    // mealTimeName is one of breakfast and lunch
-				const mealTimeName = mealTimeNames[i];
-				// we've already defined meals previously to be the specific date, so simply grab the food info now
-				const mealDescription = meals[mealTimeName];
-				// check if info exists first
-				if (mealDescription) {
-				    // define the food variable, which was previously empty
-					food += `${mealTimeName}: ${mealDescription}.  `;
-				}
-			}
-			// speak out the output based on whether there is food or not
-			speakOutput = !food ? `Meals ${day} ${(isFutureDate ? "are" : "were")} not planned.` : `Meals ${day} ${(isFutureDate ? "will be" : "were")} as follows: ${food}.`;
-		} else {
-		    // we don't want both lunch and breakfast here, so fallback to the one needed
-			food = meals[mealType];
-			
-			speakOutput = !food ? `${mealType} ${day} ${isFutureDate ? "is" : "was"} not planned.` : `${mealType} ${day} ${(isFutureDate ? "will include" : "included")} ${food}.`;
-		}
+        // we want all the meal times now
+        if (mealType === "all") {
+            // these are defined in the json under each date
+            const mealTimeNames = ["breakfast", "lunch"];
+
+            for (let i = 0; i < mealTimeNames.length; i++) {
+                // mealTimeName is one of breakfast and lunch
+                const mealTimeName = mealTimeNames[i];
+                // we've already defined meals previously to be the specific date, so simply grab the food info now
+                const mealDescription = meals[mealTimeName];
+                // check if info exists first
+                if (mealDescription) {
+                    // define the food variable, which was previously empty
+                    food += `${mealTimeName}: ${mealDescription}.  `;
+                }
+            }
+            // speak out the output based on whether there is food or not
+            speakOutput = !food ? `Meals ${day} ${(isFutureDate ? "are" : "were")} not planned.` : `Meals ${day} ${(isFutureDate ? "will be" : "were")} as follows: ${food}.`;
+        } else {
+            // we don't want both lunch and breakfast here, so fallback to the one needed
+            food = meals[mealType];
+
+            speakOutput = !food ? `${mealType} ${day} ${isFutureDate ? "is" : "was"} not planned.` : `${mealType} ${day} ${(isFutureDate ? "will include" : "included")} ${food}.`;
+        }
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -129,46 +128,49 @@ const MealIntentHandler = {
 };
 
 const CanFulfillMealIntentRequestHandler = {
-	canHandle(handlerInput) {
-		return Alexa.getRequestType(handlerInput.requestEnvelope) === "CanFulfillIntentRequest"
-			&& handlerInput.requestEnvelope.request.intent.name === "MealIntent";
-	},
-	handle(handlerInput) {
-	    const getMealRequest = handlerInput.requestEnvelope.request.intent.slots.getMealRequest;
-	    const meal = handlerInput.requestEnvelope.request.intent.slots.meal;
-	    const date = handlerInput.requestEnvelope.request.intent.slots.date;
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === "CanFulfillIntentRequest" &&
+            handlerInput.requestEnvelope.request.intent.name === "MealIntent";
+    },
+    handle(handlerInput) {
+        const getMealRequest = handlerInput.requestEnvelope.request.intent.slots.getMealRequest;
+        const meal = handlerInput.requestEnvelope.request.intent.slots.meal;
+        const date = handlerInput.requestEnvelope.request.intent.slots.date;
 
-	    const getMealRequestFulfill = !!getMealRequest; // meal request is available
-	    const mealFulfill = !!meal; // meal is available
-	    const dateFulfill = !!date; // date is available
+        const getMealRequestFulfill = !!getMealRequest; // meal request is available
+        const mealFulfill = !!meal; // meal is available
+        const dateFulfill = !!date; // date is available
 
-		const canFulfill = !!meal // fulfill if only the meal is available
-		    || (getMealRequestFulfill && getMealRequest.length > 6 && dateFulfill); // fulfill if the getMealRequest is not short and date is available
+        const canFulfill = !!meal // fulfill if only the meal is available
+            ||
+            (getMealRequestFulfill && getMealRequest.length > 6 && dateFulfill); // fulfill if the getMealRequest is not short and date is available
 
-		return handlerInput.responseBuilder
-			.withCanFulfillIntent({
-				"canFulfill": canFulfill ? "YES" : "NO",
-				"slots": {
-					"getMealRequest": {
-						"canUnderstand": getMealRequestFulfill ? "YES" : "NO",
-						"canFulfill": canFulfill && getMealRequestFulfill ? "YES" : "NO"
-					},"meal": {
-						"canUnderstand": mealFulfill ? "YES" : "NO",
-						"canFulfill": canFulfill && mealFulfill ? "YES" : "NO"
-					},"date": {
-						"canUnderstand": dateFulfill ? "YES" : "NO",
-						"canFulfill": canFulfill && dateFulfill ? "YES" : "NO"
-					},
-				}
-			})
-			.getResponse();
-	}
+        return handlerInput.responseBuilder
+            .withCanFulfillIntent({
+                "canFulfill": canFulfill ? "YES" : "NO",
+                "slots": {
+                    "getMealRequest": {
+                        "canUnderstand": getMealRequestFulfill ? "YES" : "NO",
+                        "canFulfill": canFulfill && getMealRequestFulfill ? "YES" : "NO"
+                    },
+                    "meal": {
+                        "canUnderstand": mealFulfill ? "YES" : "NO",
+                        "canFulfill": canFulfill && mealFulfill ? "YES" : "NO"
+                    },
+                    "date": {
+                        "canUnderstand": dateFulfill ? "YES" : "NO",
+                        "canFulfill": canFulfill && dateFulfill ? "YES" : "NO"
+                    },
+                }
+            })
+            .getResponse();
+    }
 };
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
+            Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
         const speakOutput = 'How can I help you today?';
@@ -182,9 +184,9 @@ const HelpIntentHandler = {
 
 const CancelAndStopIntentHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent'
-                || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
+            (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent' ||
+                Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
         const speakOutput = 'Goodbye!';
@@ -202,8 +204,8 @@ const CancelAndStopIntentHandler = {
  * */
 const FallbackIntentHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
+            Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
         const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
