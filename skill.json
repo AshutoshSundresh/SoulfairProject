@@ -5,9 +5,8 @@
         "en-US": {
           "summary": "An Alexa Skill that reads out the SNS Faridabad food menu for both breakfast and lunch",
           "examplePhrases": [
-            "Alexa, ask food menu what we\u0027re eating today",
             "Alexa, ask food menu what\u0027s for lunch tomorrow",
-            ""
+            "Alexa, ask food menu what was for breakfast yesterday"
           ],
           "keywords": [
             "sns",
@@ -33,9 +32,8 @@
         "en-CA": {
           "summary": "An Alexa Skill that reads out the SNS Faridabad food menu for both breakfast and lunch",
           "examplePhrases": [
-            "Alexa, ask food menu what we\u0027re eating today",
             "Alexa, ask food menu what\u0027s for lunch tomorrow",
-            ""
+            "Alexa, ask food menu what was for breakfast yesterday"
           ],
           "keywords": [
             "sns",
@@ -61,9 +59,8 @@
         "en-IN": {
           "summary": "An Alexa Skill that reads out the SNS Faridabad food menu for both breakfast and lunch",
           "examplePhrases": [
-            "Alexa, ask food menu what we\u0027re eating today",
             "Alexa, ask food menu what\u0027s for lunch tomorrow",
-            ""
+            "Alexa, ask food menu what was for breakfast yesterday"
           ],
           "keywords": [
             "sns",
@@ -86,40 +83,11 @@
           "smallIconUri": "file://assets/images/en-IN_smallIconUri.png",
           "largeIconUri": "file://assets/images/en-IN_largeIconUri.png"
         },
-        "en-AU": {
-          "summary": "An Alexa Skill that reads out the SNS Faridabad food menu for both breakfast and lunch",
-          "examplePhrases": [
-            "Alexa, ask food menu what we\u0027re eating today",
-            "Alexa, ask food menu what\u0027s for lunch tomorrow",
-            ""
-          ],
-          "keywords": [
-            "sns",
-            "sns",
-            "faridabad",
-            "shiv",
-            "nadar",
-            "school",
-            "schools",
-            "food",
-            "menu",
-            "lunch",
-            "menu",
-            "meals",
-            "menu",
-            "menu"
-          ],
-          "name": "Shiv Nadar School Faridabad Food Menu",
-          "description": "This skill provides the food menu for SNS Faridabad. It has various features:\n\nThe main things the skill will handle while fetching data are: \n1. Identify the specific day requested by the user as well as key words used such as tomorrow, yesterday and today.\n2. Identify whether only lunch or breakfast information is required. Fallback to providing both lunch and breakfast information if there\u0027s no explicit command for either one of them.\n3. Properly handle a situation where no data is available.\n\nSource code: https://github.com/AshutoshSundresh/SoulfairProject",
-          "smallIconUri": "file://assets/images/en-AU_smallIconUri.png",
-          "largeIconUri": "file://assets/images/en-AU_largeIconUri.png"
-        },
         "en-GB": {
           "summary": "An Alexa Skill that reads out the SNS Faridabad food menu for both breakfast and lunch",
           "examplePhrases": [
-            "Alexa, ask food menu what we\u0027re eating today",
             "Alexa, ask food menu what\u0027s for lunch tomorrow",
-            ""
+            "Alexa, ask food menu what was for breakfast yesterday"
           ],
           "keywords": [
             "sns",
@@ -150,7 +118,12 @@
       "automaticClonedLocale": {
         "locales": [
           {
-            "source": "en-US"
+            "source": "en-US",
+            "targets": [
+              "en-CA",
+              "en-IN",
+              "en-GB"
+            ]
           }
         ]
       },
@@ -188,7 +161,6 @@
         "en-US": {},
         "en-CA": {},
         "en-IN": {},
-        "en-AU": {},
         "en-GB": {}
       },
       "containsAds": false,
