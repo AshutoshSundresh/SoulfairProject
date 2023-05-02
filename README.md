@@ -13,12 +13,19 @@ This function determines whether the input provided by the user is an IntentRequ
 ## handle
 This function handles the input provided by the user by retrieving the meal information for the requested date and time.
 
-1. The user's time zone is set to "Asia/Kolkata".
-2. The meal requested by the user is obtained using Alexa.getSlotValue.
-3. The date requested by the user is obtained using Alexa.getSlotValue. If no date is provided, today's date is used.
-4. The day of the requested date is determined using moment.js.
-5. The meal information for the requested date is obtained using a JSON API.
-6. The output is generated based on the meal information obtained and whether the requested date is in the future.
-7. The output is then returned as a response to the user's request.
+- First, it sets the user's timezone to "Asia/Kolkata" for India. It then gets the meal requested by the user, which could be either "breakfast", "lunch" or "all" (both meals). It also gets the date requested by the user, which defaults to today's date if no date is specified.
 
+- It then formats the date in Amazon's preferred date style and determines the day of the week (e.g. "today", "tomorrow", "Monday", etc.) based on the user's timezone.
+
+- If the date requested is in the future, the function sets a variable <b>'isFutureDate'</b> to true. If the meal requested is breakfast and the current time is before 10 AM, or if the meal requested is lunch and the current time is before 2 PM, <b>'isFutureDate'</b> is also set to true.
+
+- The function then initializes the <b>'food'</b> variable as an empty string and defines <b>'response'</b> and <b>'meals'</b> variables. It attempts to get the menu for the specified date from an API endpoint using axios. If there is an error, it returns a message saying that there was a problem getting the menu.
+
+- If the meal requested is "all", the function loops through breakfast and lunch and adds their descriptions to the <b>'food'</b> variable. If a description exists for a meal, it adds it to the <b>'food'</b> variable with the meal name. If no descriptions exist, the function sets <b>'speakOutput'</b> to a message saying that no meals were planned for the requested date.
+
+- If the meal requested is either "breakfast" or "lunch", the function sets <b>'food'</b> to the description of the requested meal. If a description exists, the function sets <b>'speakOutput'</b> to a message stating that the meal will/was included in the menu. If no description exists, the function sets <b>'speakOutput'</b> to a message saying that the meal was not planned for the requested date.
+
+- Finally, the function returns a response with <b>'speakOutput'</b> as the spoken message to the user.
+
+## Add to your Alexa
 https://www.amazon.in/Shiv-Nadar-School-Faridabad-Food/dp/B09Q2Z1CBW
